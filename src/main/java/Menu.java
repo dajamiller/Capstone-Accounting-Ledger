@@ -25,22 +25,21 @@ public class Menu {
                 case "P" -> makePayment(list, scanner);
 
                 //case "L": showLedger???()
-                case "L" -> showLedger(list, scanner)
+                case "L" -> showLedger(list, scanner);
                 case "X" -> {
                     System.out.println("Thank you for using Quantify, goodbye!");
                     running = false;
                 }
 
-                default ->
-                    System.out.println("Invalid choice, please try again");
+                default -> System.out.println("Invalid choice, please try again");
             }
-            }
-
-
         }
+
+
     }
 
-    private static void makePayment(Ledger list, Scanner scanner){
+
+    private static void makePayment(Ledger list, Scanner scanner) {
         System.out.println("Please enter the payment amount: ");
         double amount = scanner.nextDouble();
         System.out.println("Please enter the vendor name: ");
@@ -51,5 +50,14 @@ public class Menu {
     }
 
     private static void addDeposit(Ledger list, Scanner scanner) {
+
+    }
+
+    private static void showLedger(Ledger list, Scanner scanner) {
+    }
+
+    public static void ShowHomeScreen() {
+    }
+}
 
 
