@@ -7,16 +7,19 @@ public class Ledger {
 
     private ArrayList<Transaction> list = new ArrayList<>();
 
-    public void addTransaction(Transaction transaction) {}
+    public void addTransaction(Transaction transaction) {
+    }
 
     public void showTransactions() {
         list.forEach(transaction -> System.out.println(transaction.toString()));
     }
 
-    public Ledger(){
+    public void saveToCsv() {
+    }
+
+    public Ledger() {
 
     }
 
-
-
 }
+
