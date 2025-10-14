@@ -22,15 +22,23 @@ public class Menu {
             String choice = scanner.nextLine().trim().toUpperCase(); // prompt user input make it uppercase and trim spaces
 
             switch (choice) {
-                case "D" -> addDeposit(list, scanner);
-
-                case "P" -> makePayment(list, scanner);
-
-                //case "L": showLedger???()
-                case "L" -> showLedger(list, scanner);
+                case "D" -> {
+                    addDeposit(list, scanner);
+                    break;
+                }
+                case "P" -> {
+                    makePayment(list, scanner);
+                    break;
+                    //case "L": showLedger???()
+                }
+                case "L" -> {
+                    showLedger(list, scanner);
+                    break;
+                }
                 case "X" -> {
                     System.out.println("Thank you for using Quantify, goodbye!");
                     running = false;
+                    break;
                 }
 
                 default -> System.out.println("Invalid choice, please try again");
@@ -42,9 +50,10 @@ public class Menu {
 
 
     private static void makePayment(Transaction list, Scanner scanner) {
-        System.out.println("Please enter the payment amount: ex. 129.55");
+        System.out.println("Please enter the payment amount: ex. -129.55");
         double amount = scanner.nextDouble();
         System.out.println("Please enter the vendor name: ex. Etsy");
+        scanner.nextLine();
         String vendor = scanner.nextLine().trim().toUpperCase();
         System.out.println("Enter a brief description of the payment: ex. Crochet Hats");
         String description = scanner.nextLine().trim().toUpperCase();
@@ -67,6 +76,18 @@ public class Menu {
     }
 
     private static void showLedger(Transaction list, Scanner scanner) {
+        System.out.println("Welcome to your Ledger Screen!");
+
+
+        System.out.println("(A) Show all transactions");
+        System.out.println("(D) Show Deposits");
+        System.out.println("(P) Show Payments");
+        System.out.println("(R) Run Report");
+        System.out.println("(H) Return to Home screen");
+        // make selection
+        System.out.println("What would you like to do?:");
+        String choice = scanner.nextLine().trim().toUpperCase();
+
     }
 
 }
