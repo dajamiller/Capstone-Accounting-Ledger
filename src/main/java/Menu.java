@@ -4,6 +4,7 @@ public class Menu {
     public static void ShowHome() {
         Scanner scanner = new Scanner(System.in);
         Transaction list = new Transaction();
+        Transaction t = new Transaction();
 
         boolean running = true;
 

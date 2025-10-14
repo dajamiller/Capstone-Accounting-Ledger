@@ -10,6 +10,7 @@ public class Transaction {
     private double amount;
 
     // create constructors - 1 empty?
+    public Transaction() {}
     public Transaction (LocalDate date, LocalTime time, String description, String vendor, double amount) {
         this.date = date;
         this.time = time;
@@ -17,12 +18,7 @@ public class Transaction {
         this.vendor = vendor;
         this.amount = amount;
     }
-    Transaction t = new Transaction(
-            date,
-            time,
-            description,
-            vendor,
-            amount);
+
     // getters + setters for each variable
     public LocalDate getDate() {
         return date;
@@ -62,6 +58,12 @@ public class Transaction {
 
     public void setAmount(double amount) {
         this.amount = amount;
+    }
+
+    public void addTransaction() {
+    }
+
+    public void saveToCsv() {
     }
 
     //public void addTransaction(Transaction date, Transaction time, String description, String vendor, double amount) {}
