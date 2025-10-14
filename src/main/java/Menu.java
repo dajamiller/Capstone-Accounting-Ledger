@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Menu {
     public static void ShowHome() {
         Scanner scanner = new Scanner(System.in);
-
+        Ledger list = new Ledger();
 
         boolean running = true;
 
@@ -56,8 +56,6 @@ public class Menu {
     private static void showLedger(Ledger list, Scanner scanner) {
     }
 
-    public static void ShowHomeScreen() {
-    }
 }
 
 
