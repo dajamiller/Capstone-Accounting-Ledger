@@ -20,27 +20,36 @@ public class Menu {
             String choice = scanner.nextLine().trim().toUpperCase(); // prompt user input make it uppercase and trim spaces
 
             switch (choice) {
-                case "D": addDeposit(list,scanner);
-                break;
-                case "P": makePayment(list, scanner);
-                break;
+                case "D" -> addDeposit(list, scanner);
+
+                case "P" -> makePayment(list, scanner);
+
                 //case "L": showLedger???()
-                case "X": {
+                case "L" -> showLedger(list, scanner)
+                case "X" -> {
                     System.out.println("Thank you for using Quantify, goodbye!");
                     running = false;
                 }
-                default:
-                    System.out.println("Invalid choice, please try again");
 
+                default ->
+                    System.out.println("Invalid choice, please try again");
+            }
             }
 
 
         }
     }
 
-    private static void makePayment(Transaction list, Scanner scanner) {
+    private static void makePayment(Ledger list, Scanner scanner){
+        System.out.println("Please enter the payment amount: ");
+        double amount = scanner.nextDouble();
+        System.out.println("Please enter the vendor name: ");
+        String vendor = scanner.nextLine().trim().toUpperCase();
+        System.out.println("Enter a brief description of the payment: ");
+        String description = scanner.nextLine().trim().toUpperCase();
+
     }
 
-    private static void addDeposit(Transaction list, Scanner scanner) {
-    }
-}
+    private static void addDeposit(Ledger list, Scanner scanner) {
+
+

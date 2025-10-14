@@ -1,5 +1,6 @@
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 
 public class Ledger {
 
@@ -9,16 +10,19 @@ public class Ledger {
     private String description;
     private String vendor;
     private double amount;
+    private ArrayList<Transaction> list = new ArrayList<>();
 
     // create constructor
-    public Transaction(LocalDate date, LocalTime time, String description,  String vendor, double amount) {
+    public Ledger (LocalDate date, LocalTime time, String description, String vendor, double amount) {
         this.date = date;
         this.time = time;
         this.description = description;
         this.vendor = vendor;
         this.amount = amount;
     }
-    public
+    public Ledger(){
+
+    }
 
 
     public LocalDate getDate() {
