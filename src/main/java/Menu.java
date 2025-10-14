@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Scanner;
 
 public class Menu {
@@ -50,7 +52,7 @@ public class Menu {
 
 
     private static void makePayment(Transaction list, Scanner scanner) {
-        System.out.println("Please enter the payment amount: ex. -129.55");
+        System.out.println("Please enter the payment amount: ex. 129.55");
         double amount = scanner.nextDouble();
         System.out.println("Please enter the vendor name: ex. Etsy");
         scanner.nextLine();
@@ -58,8 +60,15 @@ public class Menu {
         System.out.println("Enter a brief description of the payment: ex. Crochet Hats");
         String description = scanner.nextLine().trim().toUpperCase();
 
-        list.addTransaction();
-        list.saveToCsv();
+        Transaction t = new Transaction(
+                LocalDate.now(),
+                LocalTime.now(),
+                vendor,
+                description,
+                amount); //new transaction object ~ includes time/date at time of input
+
+        list.addTransaction();// adds to array list
+        list.saveToCsv();//saves to csv file
 
     }
 
@@ -73,6 +82,14 @@ public class Menu {
         String description = scanner.nextLine().trim().toUpperCase();
         //list.addTransaction(date, time, description,vendor, amount);
         //list.saveToCsv();
+        Transaction t = new Transaction(
+                LocalDate.now(),
+                LocalTime.now(),
+                vendor,
+                description,
+                amount);
+        list.addTransaction();
+        list.saveToCsv();
     }
 
     private static void showLedger(Transaction list, Scanner scanner) {

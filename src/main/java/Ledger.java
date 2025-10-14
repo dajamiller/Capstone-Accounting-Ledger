@@ -6,6 +6,11 @@ public class Ledger {
     private ArrayList<Transaction> list = new ArrayList<>();
 
     public void addTransaction(Transaction transaction) {
+        if (list.add(transaction))
+            System.out.println("Transaction Added: " + transaction.getDescription() + "$" + transaction.getAmount());
+        else {
+            System.out.println("Oops, try again...");
+        }
     }
     public void showTransactions() {
     }
@@ -17,7 +22,6 @@ public class Ledger {
     }
     public void showPayments() {
     }
-
     public Ledger() {
 
     }
