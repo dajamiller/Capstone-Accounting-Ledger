@@ -4,12 +4,7 @@ import java.util.ArrayList;
 
 public class Ledger {
 
-    //create instance variables
-    private LocalDate date;
-    private LocalTime time;
-    private String description;
-    private String vendor;
-    private double amount;
+
     private ArrayList<Transaction> list = new ArrayList<>();
 
     // create constructor

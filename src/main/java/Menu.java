@@ -50,6 +50,7 @@ public class Menu {
     }
 
     private static void addDeposit(Ledger list, Scanner scanner) {
+        list.add(new Transaction())
 
     }
 
