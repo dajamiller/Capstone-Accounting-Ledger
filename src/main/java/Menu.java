@@ -78,16 +78,44 @@ public class Menu {
     private static void showLedger(Transaction list, Scanner scanner) {
         System.out.println("Welcome to your Ledger Screen!");
 
-
         System.out.println("(A) Show all transactions");
         System.out.println("(D) Show Deposits");
         System.out.println("(P) Show Payments");
         System.out.println("(R) Run Report");
         System.out.println("(H) Return to Home screen");
         // make selection
-        System.out.println("What would you like to do?:");
+        System.out.println("What would you like to do?");
+        System.out.println("Enter your choice: ");
         String choice = scanner.nextLine().trim().toUpperCase();
+        switch (choice) {
+            case "A" -> {
+                showTransactions();
+                break;
+            }
+            case "D" -> {
+                showDeposits();
+                break;
+            }
+            case "P" -> {
+                showPayments();
+                break;
+            }
+            case "R" -> {}
+            case "H" -> {
+                ShowHome();
+                break;
+            }
+        }
 
+    }
+
+    private static void showPayments() {
+    }
+
+    private static void showDeposits() {
+    }
+
+    private static void showTransactions() {
     }
 
 }
