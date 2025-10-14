@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Menu {
     public static void ShowHome() {
         Scanner scanner = new Scanner(System.in);
-        Ledger list = new Ledger();
+        Transaction list = new Transaction();
 
         boolean running = true;
 
@@ -36,11 +36,11 @@ public class Menu {
             }
         }
 
-
     }
 
 
-    private static void makePayment(Ledger list, Scanner scanner) {
+
+    private static void makePayment(Transaction list, Scanner scanner) {
         System.out.println("Please enter the payment amount: ex. 129.55");
         double amount = scanner.nextDouble();
         System.out.println("Please enter the vendor name: ex. Etsy");
@@ -48,22 +48,24 @@ public class Menu {
         System.out.println("Enter a brief description of the payment: ex. Crochet Hats");
         String description = scanner.nextLine().trim().toUpperCase();
 
-        list.addTransaction(date, time, description,vendor, amount);
-        list.saveToCsv()
+        list.addTransaction();
+        list.saveToCsv();
 
     }
 
-    private static void addDeposit(Ledger list, Scanner scanner) {
+    private static void addDeposit(Transaction list, Scanner scanner) {
         System.out.println("Please enter the deposit amount: ex. 12.95");
         double amount = scanner.nextDouble();
         System.out.println("Please enter the vendor name: ex. YUU");
-        scanner.nextLine();
+        scanner.nextLine();// needed to switch from number to text
         String vendor = scanner.nextLine().trim().toUpperCase();
         System.out.println("Please enter a description of the deposit: ex. Weekly Pay");
         String description = scanner.nextLine().trim().toUpperCase();
+        //list.addTransaction(date, time, description,vendor, amount);
+        //list.saveToCsv();
     }
 
-    private static void showLedger(Ledger list, Scanner scanner) {
+    private static void showLedger(Transaction list, Scanner scanner) {
     }
 
 }

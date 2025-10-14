@@ -9,12 +9,18 @@ public class Ledger {
 
     public void addTransaction(Transaction transaction) {
     }
-
     public void showTransactions() {
         list.forEach(transaction -> System.out.println(transaction.toString()));
     }
-
     public void saveToCsv() {
+    }
+    public void loadFromCsv() {
+    }
+    public void showDeposits() {
+        list.forEach(transaction -> System.out.println(transaction.toString()));
+    }
+    public void showPayments() {
+        list.forEach(transaction -> System.out.println(transaction.toString()));
     }
 
     public Ledger() {
