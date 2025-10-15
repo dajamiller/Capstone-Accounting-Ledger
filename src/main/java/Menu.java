@@ -1,3 +1,6 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Scanner;
@@ -25,7 +28,46 @@ public class Menu {
 
             switch (choice) {
                 case "D" -> {
+
+
+                    try {
+                        File myObj = new File("transactions.csv"); // Create File object
+                        if (myObj.createNewFile()) {           // Try to create the file
+                            System.out.println("File created: " + myObj.getName() + " in " + myObj.getAbsolutePath());
+                        } else {
+                            System.out.println("File already exists.");
+                        }
+                    } catch (IOException e) {
+                        System.out.println("An error occurred.");
+
+                    }
                     addDeposit(list, scanner);
+                    try {
+                        FileWriter myWriter = new FileWriter("transactions.csv");
+                        String Entry = (LocalDate.now() + "|" +  LocalTime.now() + "|" + vendor + "|" + description + "|" + amount);
+                        myWriter.write(Entry);
+                        myWriter.close();  // must close manually
+                        System.out.println("Successfully wrote to the file.");
+                    } catch (IOException e) {
+                        System.out.println("An error occurred.");
+                        e.printStackTrace();
+                    }
+
+//
+//                    try {
+//                        File myFile = new File("transactions.csv");
+//                        FileWriter myFileWriter = new FileWriter(myFile);
+//                        if (!myFile.exists()) {
+//                            myFile.createNewFile();
+//                            System.out.println(myFile.getName() + "has been created in " + myFile.getAbsolutePath());
+//                        } else  {
+//                            FileWriter myWriter = new FileWriter("transactions.csv");
+//                            myFileWriter.write("\n");
+//
+//                        }
+//                    } catch (Exception e) {
+//                        throw new RuntimeException(e);
+//                    }
                     break;
                 }
                 case "P" -> {
@@ -67,8 +109,8 @@ public class Menu {
                 description,
                 amount); //new transaction object ~ includes time/date at time of input
 
-        list.addTransaction();// adds to array list
-        list.saveToCsv();//saves to csv file
+       // list.addTransaction();// adds to array list
+        //list.saveToCsv();//saves to csv file
 
     }
 
@@ -82,14 +124,14 @@ public class Menu {
         String description = scanner.nextLine().trim().toUpperCase();
         //list.addTransaction(date, time, description,vendor, amount);
         //list.saveToCsv();
-        Transaction t = new Transaction(
-                LocalDate.now(),
-                LocalTime.now(),
-                vendor,
-                description,
-                amount);
-        list.addTransaction();
-        list.saveToCsv();
+//        Transaction t = new Transaction(
+//                LocalDate.now(),
+//                LocalTime.now(),
+//                vendor,
+//                description,
+//                amount);
+        //list.addTransaction();
+        //list.saveToCsv();
     }
 
     private static void showLedger(Transaction list, Scanner scanner) {

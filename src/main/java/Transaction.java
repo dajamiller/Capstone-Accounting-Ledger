@@ -60,11 +60,7 @@ public class Transaction {
         this.amount = amount;
     }
 
-    public void addTransaction() {
-    }
 
-    public void saveToCsv() {
-    }
 
     //public void addTransaction(Transaction date, Transaction time, String description, String vendor, double amount) {}
 

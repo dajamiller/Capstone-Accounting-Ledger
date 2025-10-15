@@ -1,4 +1,5 @@
 import java.io.FileReader;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -8,18 +9,22 @@ import java.io.BufferedReader;
 
 public class Ledger {
 
+    private static String fileName = "transactions.csv";
 
     private ArrayList<Transaction> list = new ArrayList<>();
 
     public void addTransaction(Transaction transaction) {
         if (list.add(transaction))
-            System.out.println("Transaction Added!");// optional desription add - " + transaction.getDescription() + "$" + transaction.getAmount());
+            System.out.println("Transaction Added!");// optional description add - " + transaction.getDescription() + "$" + transaction.getAmount());
         else {
             System.out.println("Oops, try again...");
         }
     }
     public void showTransactions() {
     }
+    //public void addTransaction() {}
+
+    //public void saveToCsv() {
     public void saveToCsv() {
         try {
             FileWriter writer = new FileWriter("transactions.csv",true);
@@ -59,7 +64,6 @@ public class Ledger {
     public void showPayments() {
     }
     public Ledger() {
-
     }
 
 }
