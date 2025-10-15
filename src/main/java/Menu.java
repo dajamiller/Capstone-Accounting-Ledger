@@ -42,16 +42,6 @@ public class Menu {
 
                     }
                     addDeposit(list, scanner);
-                    try {
-                        FileWriter myWriter = new FileWriter("transactions.csv");
-                        String Entry = (LocalDate.now() + "|" +  LocalTime.now() + "|" + vendor + "|" + description + "|" + amount);
-                        myWriter.write(Entry);
-                        myWriter.close();  // must close manually
-                        System.out.println("Successfully wrote to the file.");
-                    } catch (IOException e) {
-                        System.out.println("An error occurred.");
-                        e.printStackTrace();
-                    }
 
 //
 //                    try {
@@ -122,6 +112,16 @@ public class Menu {
         String vendor = scanner.nextLine().trim().toUpperCase();
         System.out.println("Please enter a description of the deposit: ex. Weekly Pay");
         String description = scanner.nextLine().trim().toUpperCase();
+        try {
+            FileWriter myWriter = new FileWriter("transactions.csv");
+            String Entry = (LocalDate.now() + "|" +  LocalTime.now() + "|" + vendor + "|" + description + "|" + amount);
+            myWriter.write(Entry);
+            myWriter.close();  // must close manually
+            System.out.println("Successfully wrote to the file.");
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
         //list.addTransaction(date, time, description,vendor, amount);
         //list.saveToCsv();
 //        Transaction t = new Transaction(
