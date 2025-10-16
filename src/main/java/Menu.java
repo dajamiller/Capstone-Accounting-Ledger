@@ -98,9 +98,6 @@ public class Menu {
         String vendor = scanner.nextLine().trim().toUpperCase();
         System.out.println("Please enter a description of the deposit: ex. Weekly Pay");
         String description = scanner.nextLine().trim().toUpperCase();
-
-
-
         // try-catch for file writer
             try {
                 FileWriter myWriter = new FileWriter("transactions.csv", true);
@@ -114,7 +111,6 @@ public class Menu {
                 System.out.println("An error occurred, please try again");
                 e.printStackTrace();
             }
-//        }
         Transaction t = new Transaction(
                 LocalDate.now(),
                 LocalTime.now(),
@@ -142,6 +138,7 @@ public class Menu {
             switch (choice) {
                 case "A" -> {
                     myLedger.loadFromCsv();
+                    myLedger.showAllTransactions();
                     break;
                 }
                 case "D" -> {
