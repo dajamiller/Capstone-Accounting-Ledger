@@ -11,7 +11,6 @@ public class Menu {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd|HH:mm:ss");
 
     public static void ShowHome() {
-        Scanner scanner = new Scanner(System.in);
         Transaction list = new Transaction();
         Transaction t = new Transaction();
 
@@ -28,20 +27,20 @@ public class Menu {
 
 
             System.out.println("Enter your choice: ");
+            Scanner scanner = new Scanner(System.in);
             String choice = scanner.nextLine().trim().toUpperCase(); // prompt user input make it uppercase and trim spaces
 
             switch (choice) {
                 case "D" -> {
-                    addDeposit(list, scanner);
+                    addDeposit(ledger, list, scanner);
                     break;
                 }
                 case "P" -> {
-                    makePayment(list, scanner);
+                    makePayment(ledger, list, scanner);
                     break;
-                    //case "L": showLedger???()
                 }
                 case "L" -> {
-                    showLedger(list, scanner);
+                    showLedger(ledger, list, scanner);
                     break;
                 }
                 case "X" -> {
@@ -57,7 +56,7 @@ public class Menu {
     }
 
 
-    private static void makePayment(Transaction list, Scanner scanner) {
+    private static void makePayment(Ledger ledger, Transaction list, Scanner scanner) {
         System.out.println("Please enter the payment amount: ex. 129.55");
         double amount = scanner.nextDouble();
         scanner.nextLine(); // switched from # to text, need new line
@@ -75,6 +74,7 @@ public class Menu {
             String Entry = ("\n" + today.format(formatter) + "|" + vendor + "|" + description + "|" + (amount *= -1));
             myWriter.write(Entry);
             myWriter.close();  // must close manually
+            ledger.addTransaction();
             System.out.println("Payment successful");
         } catch (IOException e) {
             System.out.println("An error occurred, please try again");
@@ -90,7 +90,7 @@ public class Menu {
 
     }
 
-    private static void addDeposit(Transaction list, Scanner scanner) {
+    private static void addDeposit(Ledger ledger, Transaction list, Scanner scanner) {
         System.out.println("Please enter the deposit amount: ex. 100.00");
         double amount = scanner.nextDouble();
         System.out.println("Please enter the vendor name: ex. Year Up United");
@@ -119,10 +119,9 @@ public class Menu {
                 amount);
     }
 
-    private static void showLedger (Transaction list, Scanner scanner) {
+    private static void showLedger (Ledger ledger, Transaction list, Scanner scanner) {
 
-        Ledger myLedger = new Ledger();
-        myLedger.loadFromCsv();
+
         boolean runningLedger = true;
         while (runningLedger) {
             System.out.println("\n~~~~ Ledger Options ~~~~");
@@ -137,15 +136,15 @@ public class Menu {
             String choice = scanner.nextLine().trim().toUpperCase();
             switch (choice) {
                 case "A" -> {
-                    myLedger.showAllTransactions();
+                   ledger.showAllTransactions();
                     break;
                 }
                 case "D" -> {
-                    myLedger.showDeposits();
+                    ledger.showDeposits();
                     break;
                 }
                 case "P" -> {
-                    myLedger.showPayments();
+                    ledger.showPayments();
                     break;
                 }
                 case "R" -> {

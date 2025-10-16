@@ -23,7 +23,9 @@ public class Ledger {
 //        }
 //    }
 
-    //public void saveToCsv() {
+    public void saveToCsv() {
+
+    }
 
     public void loadFromCsv() {
         try {

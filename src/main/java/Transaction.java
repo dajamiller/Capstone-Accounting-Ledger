@@ -75,8 +75,3 @@ public class Transaction {
     }
 
 
-
-    //public void addTransaction(Transaction date, Transaction time, String description, String vendor, double amount) {}
-
-    //public void saveToCsv() {}
-
