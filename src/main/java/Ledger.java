@@ -10,9 +10,20 @@ import java.io.BufferedReader;
 public class Ledger {
 
     private static String fileName = "transactions.csv";
+    private final ArrayList<Transaction> list = new ArrayList<>();
 
-    private ArrayList<Transaction> list = new ArrayList<>();
+    public Ledger() {
+    }
+    public void showTransactions() {
+        for (Transaction t : list) {
+            System.out.println(t);
 
+        }
+
+    public void showDeposits() {
+    }
+    public void showPayments() {
+    }
     public void addTransaction(Transaction transaction) {
         if (list.add(transaction))
             System.out.println("Transaction Added!");// optional description add - " + transaction.getDescription() + "$" + transaction.getAmount());
@@ -20,23 +31,8 @@ public class Ledger {
             System.out.println("Oops, try again...");
         }
     }
-    public void showTransactions() {
-    }
-    //public void addTransaction() {}
 
-    //public void saveToCsv() {
     public void saveToCsv() {
-        try {
-            FileWriter writer = new FileWriter("transactions.csv",true);
-            for (Transaction t : list) {
-                writer.write(t.getDate() + "|" + t.getTime() + "|" + t.getDescription() + "|" + t.getVendor() + "|" + t.getAmount() + "\n");
-            }
-            writer.close();
-            System.out.println("Transaction(s) saved successfully!"); //optional - add description of transaction amount etc..
-
-        } catch (IOException e) {
-            System.out.println("Error writing transactions.csv, try again...");
-        }
     }
     public void loadFromCsv() {
         try {
@@ -59,12 +55,10 @@ public class Ledger {
             System.out.println("Error reading transactions.csv, try again...");
         }
     }
-    public void showDeposits() {
+
     }
-    public void showPayments() {
-    }
-    public Ledger() {
-    }
+
+
 
 }
 
