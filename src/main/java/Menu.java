@@ -3,9 +3,12 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Menu {
+    LocalDateTime today = LocalDateTime.now();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd|HH:mm:ss");
 
     public static void ShowHome() {
         Scanner scanner = new Scanner(System.in);
@@ -53,18 +56,6 @@ public class Menu {
 
     }
 
-    //private static void addDeposit(Transaction list, Scanner scanner) {}
-
-    //private static void showLedger(Transaction list, Scanner scanner) {}
-
-    private static void showTransactions() {
-    }
-
-    private static void showDeposits() {
-    }
-
-    private static void showPayments() {
-    }
 
     private static void makePayment(Transaction list, Scanner scanner) {
         System.out.println("Please enter the payment amount: ex. 129.55");
@@ -76,22 +67,27 @@ public class Menu {
         String description = scanner.nextLine().trim().toUpperCase();
 
         // file reader/writer
-        boolean running = true;
 
         try {
-            FileWriter myWriter = new FileWriter("transactions.csv", running);
-            String Entry = (LocalDate.now() + " | " + LocalTime.now()  + " | " + vendor + " | " + description + " | " + (amount *= -1) + "\n");
+            FileWriter myWriter = new FileWriter("transactions.csv", true);
+            LocalDateTime today = LocalDateTime.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd|HH:mm:ss");;
+            String Entry = ("\n" + today.format(formatter) + "|" + vendor + "|" + description + "|" + (amount *= -1));
             myWriter.write(Entry);
             myWriter.close();  // must close manually
             System.out.println("Payment successful");
         } catch (IOException e) {
             System.out.println("An error occurred, please try again");
             e.printStackTrace();
-
-            // list.addTransaction();// adds to array list
-            //list.saveToCsv();//saves to csv file
-
         }
+
+        Transaction t = new Transaction(
+                LocalDate.now(),
+                LocalTime.now(),
+                description,
+                vendor,
+                amount);
+
     }
 
     private static void addDeposit(Transaction list, Scanner scanner) {
@@ -103,11 +99,14 @@ public class Menu {
         System.out.println("Please enter a description of the deposit: ex. Weekly Pay");
         String description = scanner.nextLine().trim().toUpperCase();
 
-            boolean running = true;
 
+
+        // try-catch for file writer
             try {
-                FileWriter myWriter = new FileWriter("transactions.csv", running);
-                String Entry = (LocalDate.now() + " | " + LocalTime.now() + " | " + vendor + " | " + description + " | " + amount + "\n");
+                FileWriter myWriter = new FileWriter("transactions.csv", true);
+                LocalDateTime today = LocalDateTime.now();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd|HH:mm:ss");
+                String Entry = ("\n" + today.format(formatter)  + "|" + vendor + "|" + description + "|" + amount);
                 myWriter.write(Entry);
                 myWriter.close();  // must close manually
                 System.out.println("Deposit successful");
@@ -116,21 +115,22 @@ public class Menu {
                 e.printStackTrace();
             }
 //        }
-        //list.addTransaction(date, time, description,vendor, amount);
-        //list.saveToCsv();
         Transaction t = new Transaction(
                 LocalDate.now(),
                 LocalTime.now(),
-                vendor,
                 description,
+                vendor,
                 amount);
-        //list.addTransaction();
-        //list.saveToCsv();
     }
 
-    private static void showLedger (Transaction list, Scanner scanner){
+    private static void showLedger (Transaction list, Scanner scanner) {
+
+        Ledger myLedger = new Ledger();
+        myLedger.loadFromCsv();
+        boolean runningLedger = true;
+        while (runningLedger) {
             System.out.println("Welcome to your Ledger Options!\n");
-            System.out.println("(A) Show all transactions");
+            System.out.println("(A) Show All Transactions");
             System.out.println("(D) Show Deposits");
             System.out.println("(P) Show Payments");
             System.out.println("(R) Run Report");
@@ -141,28 +141,65 @@ public class Menu {
             String choice = scanner.nextLine().trim().toUpperCase();
             switch (choice) {
                 case "A" -> {
-                    showTransactions();
+                    myLedger.loadFromCsv();
                     break;
                 }
                 case "D" -> {
-                    showDeposits();
+                    myLedger.showDeposits();
                     break;
                 }
                 case "P" -> {
-                    showPayments();
+                    myLedger.showPayments();
                     break;
                 }
                 case "R" -> {
+                    showReportScreen();
                 }
                 case "H" -> {
                     ShowHome();
                     break;
                 }
+                default -> System.out.println("Invalid choice, please try again");
             }
+        }
+    }
+    private static void showReportScreen() {
+        Scanner scanner = new Scanner(System.in);
+        boolean runningReportScreen = true;
+        while (runningReportScreen) {
+            System.out.println("\n");
+            System.out.println("(1) Month to Date");
+            System.out.println("(2) Previous Month");
+            System.out.println("(3) Year to Date");
+            System.out.println("(4) Previous Year");
+            System.out.println("(5) Search by Vendor");
+            System.out.println("(0) Return to Ledger screen");
+            // make selection
+            System.out.println("What kind of report would you like to run?");
+            System.out.println("Enter your choice: ");
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+            switch (choice) {
+                case 1 -> {
+                }
+                case 2 -> {
+                }
+                case 3 -> {
+                }
+                case 4 -> {
+                }
+                case 5 -> {
 
+                }
+                case 0 -> {
+                    runningReportScreen = false;
+                }
+                default -> System.out.println("Invalid choice, please try again");
+            }
         }
 
     }
+}
 
 
 
