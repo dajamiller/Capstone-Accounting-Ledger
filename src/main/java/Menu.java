@@ -60,8 +60,8 @@ public class Menu {
     private static void makePayment(Transaction list, Scanner scanner) {
         System.out.println("Please enter the payment amount: ex. 129.55");
         double amount = scanner.nextDouble();
+        scanner.nextLine(); // switched from # to text, need new line
         System.out.println("Please enter the vendor name: ex. Etsy");
-        scanner.nextLine();
         String vendor = scanner.nextLine().trim().toUpperCase();
         System.out.println("Enter a brief description of the payment: ex. Crochet Hats");
         String description = scanner.nextLine().trim().toUpperCase();
@@ -72,7 +72,7 @@ public class Menu {
             FileWriter myWriter = new FileWriter("transactions.csv", true);
             LocalDateTime today = LocalDateTime.now();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd|HH:mm:ss");;
-            String Entry = ("\n" + today.format(formatter) + "|" + vendor + "|" + description + "|" + (amount *= -1));
+            String Entry = ("\n" + today.format(formatter) + "|" + vendor + "|" + description + "|$" + (amount *= -1));
             myWriter.write(Entry);
             myWriter.close();  // must close manually
             System.out.println("Payment successful");
@@ -106,7 +106,7 @@ public class Menu {
                 FileWriter myWriter = new FileWriter("transactions.csv", true);
                 LocalDateTime today = LocalDateTime.now();
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd|HH:mm:ss");
-                String Entry = ("\n" + today.format(formatter)  + "|" + vendor + "|" + description + "|" + amount);
+                String Entry = ("\n" + today.format(formatter)  + "|" + vendor + "|" + description + "|$" + amount);
                 myWriter.write(Entry);
                 myWriter.close();  // must close manually
                 System.out.println("Deposit successful");
