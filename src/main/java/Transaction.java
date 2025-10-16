@@ -68,7 +68,7 @@ public class Transaction {
 //
             return "\nDescription:" + this.description +
                     "\nVendor: " + this.vendor +
-                    "\nAmount: $" + this.amount +
+                    "\nAmount: " + this.amount +
                     "\nDate: " + this.date +
                     "\nTime: " + this.time;
         }

@@ -122,6 +122,7 @@ public class Menu {
     private static void showLedger (Transaction list, Scanner scanner) {
 
         Ledger myLedger = new Ledger();
+        myLedger.loadFromCsv();
         boolean runningLedger = true;
         while (runningLedger) {
             System.out.println("\n~~~~ Ledger Options ~~~~");
@@ -136,17 +137,14 @@ public class Menu {
             String choice = scanner.nextLine().trim().toUpperCase();
             switch (choice) {
                 case "A" -> {
-                    myLedger.loadFromCsv();
                     myLedger.showAllTransactions();
                     break;
                 }
                 case "D" -> {
-                    myLedger.loadFromCsv();
                     myLedger.showDeposits();
                     break;
                 }
                 case "P" -> {
-                    myLedger.loadFromCsv();
                     myLedger.showPayments();
                     break;
                 }
