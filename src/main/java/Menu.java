@@ -77,10 +77,10 @@ public class Menu {
 
         // file reader/writer
         boolean running = true;
-        LocalDateTime today = LocalDateTime.now();
+
         try {
             FileWriter myWriter = new FileWriter("transactions.csv", running);
-            String Entry = (today + " | " + vendor + " | " + description + " | " + (amount *= -1));
+            String Entry = (LocalDate.now() + " | " + LocalTime.now()  + " | " + vendor + " | " + description + " | " + (amount *= -1) + "\n");
             myWriter.write(Entry);
             myWriter.close();  // must close manually
             System.out.println("Payment successful");
@@ -104,9 +104,10 @@ public class Menu {
         String description = scanner.nextLine().trim().toUpperCase();
 
             boolean running = true;
+
             try {
-                FileWriter myWriter = new FileWriter("transactions.csv");
-                String Entry = (LocalDate.now() + " | " + LocalTime.now() + " | " + vendor + " | " + description + " | " + amount);
+                FileWriter myWriter = new FileWriter("transactions.csv", running);
+                String Entry = (LocalDate.now() + " | " + LocalTime.now() + " | " + vendor + " | " + description + " | " + amount + "\n");
                 myWriter.write(Entry);
                 myWriter.close();  // must close manually
                 System.out.println("Deposit successful");
