@@ -70,10 +70,10 @@ public class Transaction {
             } else if (this.amount <= 0) {
                 System.out.println("Payment");
             }
-            return "\nTransaction type: " +
-                    "\nDescription:" + description +
-                    "\nVendor: " + vendor +
-                    "\nAmount: " + amount + '}';
+            return "\nTransaction type: " + transactionType +
+                    "\nDescription:" + this.description +
+                    "\nVendor: " + this.vendor +
+                    "\nAmount: " + this.amount + '}';
         }
     }
 
