@@ -10,8 +10,10 @@ public class Transaction {
     private double amount;
 
     // create constructors - 1 empty?
-    public Transaction() {}
-    public Transaction (LocalDate date, LocalTime time, String description, String vendor, double amount) {
+    public Transaction() {
+    }
+
+    public Transaction(LocalDate date, LocalTime time, String description, String vendor, double amount) {
         this.date = date;
         this.time = time;
         this.description = description;
@@ -60,9 +62,24 @@ public class Transaction {
         this.amount = amount;
     }
 
+    @Override
+    public String toString() {
+        String transactionType = "Deposit";
+            if (this.amount >= 0) {
+                System.out.println("Deposit");
+            } else if (this.amount <= 0) {
+                System.out.println("Payment");
+            }
+            return "\nTransaction type: " +
+                    "\nDescription:" + description +
+                    "\nVendor: " + vendor +
+                    "\nAmount: " + amount + '}';
+        }
+    }
+
 
 
     //public void addTransaction(Transaction date, Transaction time, String description, String vendor, double amount) {}
 
     //public void saveToCsv() {}
-}
+

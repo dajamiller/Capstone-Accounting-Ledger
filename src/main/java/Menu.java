@@ -145,11 +145,11 @@ public class Menu {
                     break;
                 }
                 case "D" -> {
-                    myLedger.showDeposits();
+                    //myLedger.showDeposits();
                     break;
                 }
                 case "P" -> {
-                    myLedger.showPayments();
+                   // myLedger.showPayments();
                     break;
                 }
                 case "R" -> {

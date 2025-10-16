@@ -20,19 +20,17 @@ public class Ledger {
 
         }
 
-    public void showDeposits() {
-    }
-    public void showPayments() {
-    }
-    public void addTransaction(Transaction transaction) {
-        if (list.add(transaction))
-            System.out.println("Transaction Added!");// optional description add - " + transaction.getDescription() + "$" + transaction.getAmount());
-        else {
-            System.out.println("Oops, try again...");
-        }
-    }
+    //public void showDeposits() {}
+    //public void showPayments() {}
+//    public void addTransaction(Transaction transaction) {
+//        if (list.add(transaction))
+//            System.out.println("Transaction Added!");// optional description add - " + transaction.getDescription() + "$" + transaction.getAmount());
+//        else {
+//            System.out.println("Oops, try again...");
+//        }
+//    }
 
-    public void saveToCsv() {
+    //public void saveToCsv() {
     }
     public void loadFromCsv() {
         try {
@@ -60,5 +58,4 @@ public class Ledger {
 
 
 
-}
 
