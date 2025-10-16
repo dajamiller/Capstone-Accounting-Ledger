@@ -64,16 +64,16 @@ public class Transaction {
 
     @Override
     public String toString() {
-        String transactionType = "Deposit";
+        String transactionType = "Deposit"
             if (this.amount >= 0) {
-                System.out.println("Deposit");
+
             } else if (this.amount <= 0) {
-                System.out.println("Payment");
+                String transactionType = "Payment";
             }
             return "\nTransaction type: " + transactionType +
                     "\nDescription:" + this.description +
                     "\nVendor: " + this.vendor +
-                    "\nAmount: " + this.amount + '}';
+                    "\nAmount: " + this.amount ;
         }
     }
 
