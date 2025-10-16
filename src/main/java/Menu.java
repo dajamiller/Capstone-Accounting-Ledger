@@ -30,7 +30,7 @@ public class Menu {
                 case "D" -> {
 
 
-                    try {
+                   /* try {
                         File myObj = new File("transactions.csv"); // Create File object
                         if (myObj.createNewFile()) {           // Try to create the file
                             System.out.println("File created: " + myObj.getName() + " in " + myObj.getAbsolutePath());
@@ -40,7 +40,7 @@ public class Menu {
                     } catch (IOException e) {
                         System.out.println("An error occurred.");
 
-                    }
+                    }*/
                     addDeposit(list, scanner);
 
 //
@@ -81,7 +81,17 @@ public class Menu {
 
     }
 
+    //private static void addDeposit(Transaction list, Scanner scanner) {}
 
+    //private static void showLedger(Transaction list, Scanner scanner) {}
+
+//    private static void showTransactions() {}
+//
+//    private static void showDeposits() {
+//    }
+//
+//    private static void showPayments() {
+//    }
 
     private static void makePayment(Transaction list, Scanner scanner) {
         System.out.println("Please enter the payment amount: ex. 129.55");
@@ -92,91 +102,90 @@ public class Menu {
         System.out.println("Enter a brief description of the payment: ex. Crochet Hats");
         String description = scanner.nextLine().trim().toUpperCase();
 
+        // file reader/writer
+//        try {
+//            FileWriter myWriter = new FileWriter("transactions.csv");
+//            String Entry = (LocalDate.now() + "|" + LocalTime.now() + "|" + vendor + "|" + description + "|" + amount *= -1);
+//            myWriter.write(Entry);
+//            myWriter.close();  // must close manually
+//            System.out.println("Payment successful");
+//        } catch (IOException e) {
+//            System.out.println("An error occurred, please try again");
+//            e.printStackTrace();
+
+            // list.addTransaction();// adds to array list
+            //list.saveToCsv();//saves to csv file
+
+        }
+    }
+
+          private static void addDeposit(Transaction list, Scanner scanner) {
+            System.out.println("Please enter the deposit amount: ex. 12.95");
+            double amount = scanner.nextDouble();
+            System.out.println("Please enter the vendor name: ex. YUU");
+            scanner.nextLine();// needed to switch from number to text
+            String vendor = scanner.nextLine().trim().toUpperCase();
+            System.out.println("Please enter a description of the deposit: ex. Weekly Pay");
+            String description = scanner.nextLine().trim().toUpperCase();
+//            try {
+//                FileWriter myWriter = new FileWriter("transactions.csv");
+//                String Entry = (LocalDate.now() + "|" + LocalTime.now() + "|" + vendor + "|" + description + "|" + amount);
+//                myWriter.write(Entry);
+//                myWriter.close();  // must close manually
+//                System.out.println("Deposit successful");
+//            } catch (IOException e) {
+//                System.out.println("An error occurred, please try again");
+//                e.printStackTrace();
+//            }
+//        }
+            //list.addTransaction(date, time, description,vendor, amount);
+            //list.saveToCsv();
         Transaction t = new Transaction(
                 LocalDate.now(),
                 LocalTime.now(),
                 vendor,
                 description,
-                amount); //new transaction object ~ includes time/date at time of input
+                amount);
+            //list.addTransaction();
+            //list.saveToCsv();
 
-       // list.addTransaction();// adds to array list
-        //list.saveToCsv();//saves to csv file
 
-    }
+         showLedger (Transaction, list, Scanner scanner){
+            System.out.println("Welcome to your Ledger Screen!");
 
-    private static void addDeposit(Transaction list, Scanner scanner) {
-        System.out.println("Please enter the deposit amount: ex. 12.95");
-        double amount = scanner.nextDouble();
-        System.out.println("Please enter the vendor name: ex. YUU");
-        scanner.nextLine();// needed to switch from number to text
-        String vendor = scanner.nextLine().trim().toUpperCase();
-        System.out.println("Please enter a description of the deposit: ex. Weekly Pay");
-        String description = scanner.nextLine().trim().toUpperCase();
-        try {
-            FileWriter myWriter = new FileWriter("transactions.csv");
-            String Entry = (LocalDate.now() + "|" +  LocalTime.now() + "|" + vendor + "|" + description + "|" + amount);
-            myWriter.write(Entry);
-            myWriter.close();  // must close manually
-            System.out.println("Successfully wrote to the file.");
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-        //list.addTransaction(date, time, description,vendor, amount);
-        //list.saveToCsv();
-//        Transaction t = new Transaction(
-//                LocalDate.now(),
-//                LocalTime.now(),
-//                vendor,
-//                description,
-//                amount);
-        //list.addTransaction();
-        //list.saveToCsv();
-    }
-
-    private static void showLedger(Transaction list, Scanner scanner) {
-        System.out.println("Welcome to your Ledger Screen!");
-
-        System.out.println("(A) Show all transactions");
-        System.out.println("(D) Show Deposits");
-        System.out.println("(P) Show Payments");
-        System.out.println("(R) Run Report");
-        System.out.println("(H) Return to Home screen");
-        // make selection
-        System.out.println("What would you like to do?");
-        System.out.println("Enter your choice: ");
-        String choice = scanner.nextLine().trim().toUpperCase();
-        switch (choice) {
-            case "A" -> {
-                showTransactions();
-                break;
+            System.out.println("(A) Show all transactions");
+            System.out.println("(D) Show Deposits");
+            System.out.println("(P) Show Payments");
+            System.out.println("(R) Run Report");
+            System.out.println("(H) Return to Home screen");
+            // make selection
+            System.out.println("What would you like to do?");
+            System.out.println("Enter your choice: ");
+            String choice = scanner.nextLine().trim().toUpperCase();
+            switch (choice) {
+                case "A" -> {
+                    showTransactions();
+                    break;
+                }
+                case "D" -> {
+                    showDeposits();
+                    break;
+                }
+                case "P" -> {
+                    showPayments();
+                    break;
+                }
+                case "R" -> {
+                }
+                case "H" -> {
+                    ShowHome();
+                    break;
+                }
             }
-            case "D" -> {
-                showDeposits();
-                break;
-            }
-            case "P" -> {
-                showPayments();
-                break;
-            }
-            case "R" -> {}
-            case "H" -> {
-                ShowHome();
-                break;
-            }
+
         }
 
     }
 
-    private static void showPayments() {
-    }
-
-    private static void showDeposits() {
-    }
-
-    private static void showTransactions() {
-    }
-
-}
 
 
