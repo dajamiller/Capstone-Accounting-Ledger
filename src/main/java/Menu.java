@@ -72,7 +72,7 @@ public class Menu {
             FileWriter myWriter = new FileWriter("transactions.csv", true);
             LocalDateTime today = LocalDateTime.now();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd|HH:mm:ss");;
-            String Entry = ("\n" + today.format(formatter) + "|" + vendor + "|" + description + "|$" + (amount *= -1));
+            String Entry = ("\n" + today.format(formatter) + "|" + vendor + "|" + description + "|" + (amount *= -1));
             myWriter.write(Entry);
             myWriter.close();  // must close manually
             System.out.println("Payment successful");
@@ -91,19 +91,19 @@ public class Menu {
     }
 
     private static void addDeposit(Transaction list, Scanner scanner) {
-        System.out.println("Please enter the deposit amount: ex. 12.95");
+        System.out.println("Please enter the deposit amount: ex. 100.00");
         double amount = scanner.nextDouble();
-        System.out.println("Please enter the vendor name: ex. YUU");
+        System.out.println("Please enter the vendor name: ex. Year Up United");
         scanner.nextLine();// needed to switch from number to text
         String vendor = scanner.nextLine().trim().toUpperCase();
-        System.out.println("Please enter a description of the deposit: ex. Weekly Pay");
+        System.out.println("Please enter a description of the deposit: ex. Bi-Weekly Pay");
         String description = scanner.nextLine().trim().toUpperCase();
         // try-catch for file writer
             try {
                 FileWriter myWriter = new FileWriter("transactions.csv", true);
                 LocalDateTime today = LocalDateTime.now();
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd|HH:mm:ss");
-                String Entry = ("\n" + today.format(formatter)  + "|" + vendor + "|" + description + "|$" + amount);
+                String Entry = ("\n" + today.format(formatter)  + "|" + vendor + "|" + description + "|" + amount);
                 myWriter.write(Entry);
                 myWriter.close();  // must close manually
                 System.out.println("Deposit successful");
@@ -122,17 +122,16 @@ public class Menu {
     private static void showLedger (Transaction list, Scanner scanner) {
 
         Ledger myLedger = new Ledger();
-        myLedger.loadFromCsv();
         boolean runningLedger = true;
         while (runningLedger) {
-            System.out.println("Welcome to your Ledger Options!\n");
+            System.out.println("\n~~~~ Ledger Options ~~~~");
             System.out.println("(A) Show All Transactions");
             System.out.println("(D) Show Deposits");
             System.out.println("(P) Show Payments");
             System.out.println("(R) Run Report");
             System.out.println("(H) Return to Home screen");
             // make selection
-            System.out.println("What would you like to do?");
+            System.out.println("\nWhat would you like to do?");
             System.out.println("Enter your choice: ");
             String choice = scanner.nextLine().trim().toUpperCase();
             switch (choice) {
@@ -142,11 +141,13 @@ public class Menu {
                     break;
                 }
                 case "D" -> {
-                    //myLedger.showDeposits();
+                    myLedger.loadFromCsv();
+                    myLedger.showDeposits();
                     break;
                 }
                 case "P" -> {
-                   // myLedger.showPayments();
+                    myLedger.loadFromCsv();
+                    myLedger.showPayments();
                     break;
                 }
                 case "R" -> {
@@ -164,7 +165,8 @@ public class Menu {
         Scanner scanner = new Scanner(System.in);
         boolean runningReportScreen = true;
         while (runningReportScreen) {
-            System.out.println("\n");
+            System.out.println("\n\n ~~~ Report Options ~~~");
+
             System.out.println("(1) Month to Date");
             System.out.println("(2) Previous Month");
             System.out.println("(3) Year to Date");

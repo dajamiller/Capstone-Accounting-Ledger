@@ -48,14 +48,31 @@ public class Ledger {
             System.out.println("Error reading transactions.csv, try again...");
         }
     }
-public void showAllTransactions() {
+    public void showAllTransactions() {
     System.out.println("All transactions, from newest to oldest:");
     for (Transaction t : list) {
         System.out.println(t);
     }
 }
 
+    public void showDeposits() {
+        System.out.println("\n~~~~ Showing All Deposits ~~~~");
+        for (Transaction t : list) {
+            if (t.getAmount() > 0) {
+                System.out.println(t);
+            }
+        }
     }
+
+    public void showPayments() {
+        System.out.println("\n~~~~ Showing All Payments ~~~~");
+        for (Transaction t : list) {
+            if (t.getAmount() < 0) {
+                System.out.println(t);
+            }
+        }
+    }
+}
 
 
 
