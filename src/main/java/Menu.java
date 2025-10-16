@@ -1,11 +1,12 @@
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Scanner;
 
 public class Menu {
+
     public static void ShowHome() {
         Scanner scanner = new Scanner(System.in);
         Transaction list = new Transaction();
@@ -28,36 +29,7 @@ public class Menu {
 
             switch (choice) {
                 case "D" -> {
-
-
-                   /* try {
-                        File myObj = new File("transactions.csv"); // Create File object
-                        if (myObj.createNewFile()) {           // Try to create the file
-                            System.out.println("File created: " + myObj.getName() + " in " + myObj.getAbsolutePath());
-                        } else {
-                            System.out.println("File already exists.");
-                        }
-                    } catch (IOException e) {
-                        System.out.println("An error occurred.");
-
-                    }*/
                     addDeposit(list, scanner);
-
-//
-//                    try {
-//                        File myFile = new File("transactions.csv");
-//                        FileWriter myFileWriter = new FileWriter(myFile);
-//                        if (!myFile.exists()) {
-//                            myFile.createNewFile();
-//                            System.out.println(myFile.getName() + "has been created in " + myFile.getAbsolutePath());
-//                        } else  {
-//                            FileWriter myWriter = new FileWriter("transactions.csv");
-//                            myFileWriter.write("\n");
-//
-//                        }
-//                    } catch (Exception e) {
-//                        throw new RuntimeException(e);
-//                    }
                     break;
                 }
                 case "P" -> {
@@ -85,13 +57,14 @@ public class Menu {
 
     //private static void showLedger(Transaction list, Scanner scanner) {}
 
-//    private static void showTransactions() {}
-//
-//    private static void showDeposits() {
-//    }
-//
-//    private static void showPayments() {
-//    }
+    private static void showTransactions() {
+    }
+
+    private static void showDeposits() {
+    }
+
+    private static void showPayments() {
+    }
 
     private static void makePayment(Transaction list, Scanner scanner) {
         System.out.println("Please enter the payment amount: ex. 129.55");
@@ -103,15 +76,17 @@ public class Menu {
         String description = scanner.nextLine().trim().toUpperCase();
 
         // file reader/writer
-//        try {
-//            FileWriter myWriter = new FileWriter("transactions.csv");
-//            String Entry = (LocalDate.now() + "|" + LocalTime.now() + "|" + vendor + "|" + description + "|" + amount *= -1);
-//            myWriter.write(Entry);
-//            myWriter.close();  // must close manually
-//            System.out.println("Payment successful");
-//        } catch (IOException e) {
-//            System.out.println("An error occurred, please try again");
-//            e.printStackTrace();
+        boolean running = true;
+        LocalDateTime today = LocalDateTime.now();
+        try {
+            FileWriter myWriter = new FileWriter("transactions.csv", running);
+            String Entry = (today + " | " + vendor + " | " + description + " | " + (amount *= -1));
+            myWriter.write(Entry);
+            myWriter.close();  // must close manually
+            System.out.println("Payment successful");
+        } catch (IOException e) {
+            System.out.println("An error occurred, please try again");
+            e.printStackTrace();
 
             // list.addTransaction();// adds to array list
             //list.saveToCsv();//saves to csv file
@@ -119,40 +94,41 @@ public class Menu {
         }
     }
 
-          private static void addDeposit(Transaction list, Scanner scanner) {
-            System.out.println("Please enter the deposit amount: ex. 12.95");
-            double amount = scanner.nextDouble();
-            System.out.println("Please enter the vendor name: ex. YUU");
-            scanner.nextLine();// needed to switch from number to text
-            String vendor = scanner.nextLine().trim().toUpperCase();
-            System.out.println("Please enter a description of the deposit: ex. Weekly Pay");
-            String description = scanner.nextLine().trim().toUpperCase();
-//            try {
-//                FileWriter myWriter = new FileWriter("transactions.csv");
-//                String Entry = (LocalDate.now() + "|" + LocalTime.now() + "|" + vendor + "|" + description + "|" + amount);
-//                myWriter.write(Entry);
-//                myWriter.close();  // must close manually
-//                System.out.println("Deposit successful");
-//            } catch (IOException e) {
-//                System.out.println("An error occurred, please try again");
-//                e.printStackTrace();
-//            }
+    private static void addDeposit(Transaction list, Scanner scanner) {
+        System.out.println("Please enter the deposit amount: ex. 12.95");
+        double amount = scanner.nextDouble();
+        System.out.println("Please enter the vendor name: ex. YUU");
+        scanner.nextLine();// needed to switch from number to text
+        String vendor = scanner.nextLine().trim().toUpperCase();
+        System.out.println("Please enter a description of the deposit: ex. Weekly Pay");
+        String description = scanner.nextLine().trim().toUpperCase();
+
+            boolean running = true;
+            try {
+                FileWriter myWriter = new FileWriter("transactions.csv");
+                String Entry = (LocalDate.now() + " | " + LocalTime.now() + " | " + vendor + " | " + description + " | " + amount);
+                myWriter.write(Entry);
+                myWriter.close();  // must close manually
+                System.out.println("Deposit successful");
+            } catch (IOException e) {
+                System.out.println("An error occurred, please try again");
+                e.printStackTrace();
+            }
 //        }
-            //list.addTransaction(date, time, description,vendor, amount);
-            //list.saveToCsv();
+        //list.addTransaction(date, time, description,vendor, amount);
+        //list.saveToCsv();
         Transaction t = new Transaction(
                 LocalDate.now(),
                 LocalTime.now(),
                 vendor,
                 description,
                 amount);
-            //list.addTransaction();
-            //list.saveToCsv();
+        //list.addTransaction();
+        //list.saveToCsv();
+    }
 
-
-         showLedger (Transaction, list, Scanner scanner){
-            System.out.println("Welcome to your Ledger Screen!");
-
+    private static void showLedger (Transaction list, Scanner scanner){
+            System.out.println("Welcome to your Ledger Options!\n");
             System.out.println("(A) Show all transactions");
             System.out.println("(D) Show Deposits");
             System.out.println("(P) Show Payments");
