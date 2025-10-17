@@ -20,8 +20,15 @@ public class Menu {
 
         while (running) {
             // create home menu options
-            System.out.println("\nWelcome to Quantify! - Your Favorite Financial Manager \uD83D\uDCB0");
-            System.out.println("What would you like to do?:");
+            System.out.println("   ____                    __  _ ____     \n" +
+                    "  / __ \\__  ______ _____  / /_(_) __/_  __\n" +
+                    " / / / / / / / __ `/ __ \\/ __/ / /_/ / / /\n" +
+                    "/ /_/ / /_/ / /_/ / / / / /_/ / __/ /_/ / \n" +
+                    "\\___\\_\\__,_/\\__,_/_/ /_/\\__/_/_/  \\__, /  \n" +
+                    "                                 /____/    ");
+            System.out.println("\n~~~~~~~~ Welcome to Quantify! ~~~~~~~~");
+            System.out.println("~~Your Favorite Financial Manager \uD83D\uDCB0~~");
+            System.out.println("\nWhat would you like to do?:");
             System.out.println("(D) Add a Deposit");
             System.out.println("(P) Make a Payment");
             System.out.println("(L) Ledger");
@@ -182,9 +189,10 @@ public class Menu {
             System.out.println("(0) Return to Ledger screen");
             // make selection
             System.out.println("What kind of report would you like to run?");
-            System.out.println("Enter your choice: ");
+            System.out.println("\nEnter your choice: ");
             int choice = scanner.nextInt();
             scanner.nextLine();
+            LocalDate todaysDate = LocalDate.now();
             switch (choice) {
                 case 1 -> {
                 }
