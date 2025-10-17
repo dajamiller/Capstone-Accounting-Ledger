@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.io.BufferedReader;
 import java.util.Collections;
 import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class Ledger {
 
@@ -41,7 +42,7 @@ public class Ledger {
                         parts[2],
                         parts[3],
                         Double.parseDouble(parts[4])
-            );
+                );
                 list.add(t);
             }
             reader.close();
@@ -52,13 +53,14 @@ public class Ledger {
             System.out.println("Error reading transactions.csv, try again...");
         }
     }
+
     public void showAllTransactions() {
         //loadFromCsv();
         System.out.println("All transactions, from newest to oldest:");
         for (Transaction t : list) {
             System.out.println(t);
+        }
     }
-}
 
     public void showDeposits() {
         System.out.println("\n~~~~ Showing All Deposits ~~~~");
@@ -83,14 +85,18 @@ public class Ledger {
     public void addTransaction(Transaction transaction) {
         list.add(0, transaction);
     }
+
     public void monthToDate() {
         LocalDate today = LocalDate.now();
-
-        boolean found = false;
+        System.out.println("\n~~~~ Month To Date ~~~~\n");
         for (Transaction t : list) {
-
-            System.out.println(t);
+            if (t.getDate().getDayOfMonth() == today.getDayOfMonth() &&
+                    t.getDate().getYear() == today.getYear()) {
+                System.out.println(t);
+            }
         }
+
+    //public void
 
 
     }

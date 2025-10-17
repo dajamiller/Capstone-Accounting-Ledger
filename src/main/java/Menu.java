@@ -196,7 +196,7 @@ public class Menu {
 
             switch (choice) {
                 case 1 -> {
-                    //monthToDate();
+                    ledger.monthToDate();
                 }
                 case 2 -> {
                     //previousMonth();
