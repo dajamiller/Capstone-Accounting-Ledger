@@ -92,7 +92,7 @@ public class Ledger {
         LocalDate today = LocalDate.now();
         System.out.println("\n~~~~ Month To Date ~~~~\n");
         for (Transaction t : list) {
-            if (t.getDate().getDayOfMonth() == today.getDayOfMonth() &&
+            if (t.getDate().getMonth() == today.getMonth() &&
                     t.getDate().getYear() == today.getYear()) {
                 System.out.println(t);
             }
