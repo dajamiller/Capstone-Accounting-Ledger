@@ -85,7 +85,7 @@ public class Menu {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd|HH:mm:ss");;
             String Entry = ("\n" + today.format(formatter) + "|" + vendor + "|" + description + "|" + (amount *= -1));
             myWriter.write(Entry);
-            ledger.addTransaction();
+
             myWriter.close();  // must close manually
 
             System.out.println("Payment successful");
@@ -100,7 +100,7 @@ public class Menu {
                 description,
                 vendor,
                 amount);
-
+        ledger.addTransaction(t);
     }
 
     private static void addDeposit(Ledger ledger, Transaction list, Scanner scanner) {
@@ -130,7 +130,7 @@ public class Menu {
                 description,
                 vendor,
                 amount);
-            ledger.addTransaction();
+            ledger.addTransaction(t);
     }
 
     private static void showLedger (Ledger ledger, Transaction list, Scanner scanner) {
@@ -165,7 +165,7 @@ public class Menu {
                     break;
                 }
                 case "R" -> {
-                    showReportScreen();
+                    showReportScreen(ledger, list, scanner);
                 }
                 case "H" -> {
                     ShowHome();
@@ -175,8 +175,7 @@ public class Menu {
             }
         }
     }
-    private static void showReportScreen() {
-        Scanner scanner = new Scanner(System.in);
+    private static void showReportScreen(Ledger ledger, Transaction list, Scanner scanner) {
         boolean runningReportScreen = true;
         while (runningReportScreen) {
             System.out.println("\n\n ~~~ Report Options ~~~");
@@ -193,17 +192,24 @@ public class Menu {
             int choice = scanner.nextInt();
             scanner.nextLine();
             LocalDate todaysDate = LocalDate.now();
+
             switch (choice) {
                 case 1 -> {
+                    //monthToDate();
                 }
                 case 2 -> {
+                    //previousMonth();
                 }
                 case 3 -> {
+                    //yearToDate();
                 }
                 case 4 -> {
+                    //previousYear();
                 }
                 case 5 -> {
-
+                    System.out.println("Enter the vendor name: ");
+                    String vendor = scanner.nextLine().trim().toUpperCase();
+                    ledger.showByVendor(vendor);
                 }
                 case 0 -> {
                     runningReportScreen = false;
@@ -213,6 +219,7 @@ public class Menu {
         }
 
     }
+
 }
 
 

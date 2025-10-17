@@ -79,12 +79,24 @@ public class Ledger {
         }
     }
 
-    public void addTransaction() {
-        if (list.add(new Transaction())){
-            System.out.println("Transaction Added!");
-        } else {
-            System.out.println("Oops, try again...");
+    public void addTransaction(Transaction transaction) {
+        list.add(transaction);
+    }
+    public void showByVendor(String vendor) {
+        //loadFromCsv();
+        System.out.println("All transactions from " +  vendor);
+        boolean vendorFound = false;
+
+        for (Transaction t : list) {
+            if (t.getVendor().equalsIgnoreCase(vendor)) {
+                System.out.println(t);
+                vendorFound = true;
+            }
         }
+        if (!vendorFound) {
+            System.out.println("Sorry, there are no matching transactions for " +  vendor);
+        }
+
     }
 }
 
