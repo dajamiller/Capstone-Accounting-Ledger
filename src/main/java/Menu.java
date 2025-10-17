@@ -199,13 +199,13 @@ public class Menu {
                     ledger.monthToDate();
                 }
                 case 2 -> {
-                    //previousMonth();
+                    ledger.previousMonth();
                 }
                 case 3 -> {
-                    //yearToDate();
+                    ledger.yearToDate();
                 }
                 case 4 -> {
-                    //previousYear();
+                    ledger.previousYear();
                 }
                 case 5 -> {
                     System.out.println("Enter the vendor name: ");

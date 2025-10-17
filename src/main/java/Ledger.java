@@ -1,3 +1,5 @@
+import com.sun.source.tree.ClassTree;
+
 import java.io.FileReader;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -95,11 +97,37 @@ public class Ledger {
                 System.out.println(t);
             }
         }
-
-    //public void
-
-
     }
+
+    public void previousMonth() {
+        System.out.println("\n~~~~ Previous Month ~~~~\n");
+        LocalDate previosMonth = LocalDate.now().minusMonths(1);
+        for (Transaction t : list) {
+            if (t.getDate().getMonth() == previosMonth.getMonth() &&
+                    t.getDate().getYear() == previosMonth.getYear()) {
+                System.out.println(t);
+            }
+        }
+    }
+    public void previousYear() {
+        System.out.println("\n~~~~ Previous Year ~~~~\n");
+        LocalDate previosYear = LocalDate.now().minusYears(1);
+        for (Transaction t : list) {
+            if (t.getDate().getYear() == previosYear.getYear()) {
+                System.out.println(t);
+            }
+        }
+    }
+    public void yearToDate() {
+        LocalDate today = LocalDate.now();
+        System.out.println("\n~~~~ Year To Date ~~~~\n");
+        for (Transaction t : list) {
+            if (t.getDate().getYear() == today.getYear()) {
+                System.out.println(t);
+            }
+        }
+    }
+
     public void showByVendor(String vendor) {
         //loadFromCsv();
         System.out.println("All transactions from " +  vendor);
