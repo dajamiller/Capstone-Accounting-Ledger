@@ -52,7 +52,7 @@ public class Ledger {
         }
     }
     public void showAllTransactions() {
-        loadFromCsv();
+        //loadFromCsv();
         System.out.println("All transactions, from newest to oldest:");
         for (Transaction t : list) {
             System.out.println(t);
@@ -69,7 +69,7 @@ public class Ledger {
     }
 
     public void showPayments() {
-        loadFromCsv();
+        //loadFromCsv();
 
         System.out.println("\n~~~~ Showing All Payments ~~~~");
         for (Transaction t : list) {
@@ -80,7 +80,12 @@ public class Ledger {
     }
 
     public void addTransaction(Transaction transaction) {
-        list.add(transaction);
+        list.add(0, transaction);
+    }
+    public void monthToDate() {
+        LocalDate today = LocalDate.now();
+
+
     }
     public void showByVendor(String vendor) {
         //loadFromCsv();

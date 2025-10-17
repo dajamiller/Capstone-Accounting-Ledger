@@ -16,8 +16,9 @@ public class Menu {
         Transaction t = new Transaction();
         Ledger ledger = new Ledger();
 
-        boolean running = true;
+        ledger.loadFromCsv(); // only loaded once for all options
 
+        boolean running = true;
         while (running) {
             // create home menu options
             System.out.println("   ____                    __  _ ____     \n" +
@@ -150,32 +151,32 @@ public class Menu {
             String choice = scanner.nextLine().trim().toUpperCase();
             switch (choice) {
                 case "A" -> {
-                    ledger.loadFromCsv();
+                    //ledger.loadFromCsv();
                     ledger.showAllTransactions();
                     break;
                 }
                 case "D" -> {
-                    ledger.loadFromCsv();
+                    //ledger.loadFromCsv();
                     ledger.showDeposits();
                     break;
                 }
                 case "P" -> {
-                    ledger.loadFromCsv();
+                    //ledger.loadFromCsv();
                     ledger.showPayments();
                     break;
                 }
                 case "R" -> {
-                    showReportScreen(ledger, list, scanner);
+                    showReportScreen(ledger, scanner);
                 }
                 case "H" -> {
-                    ShowHome();
+                    runningLedger = false;
                     break;
                 }
                 default -> System.out.println("Invalid choice, please try again");
             }
         }
     }
-    private static void showReportScreen(Ledger ledger, Transaction list, Scanner scanner) {
+    private static void showReportScreen(Ledger ledger, Scanner scanner) {
         boolean runningReportScreen = true;
         while (runningReportScreen) {
             System.out.println("\n\n ~~~ Report Options ~~~");
