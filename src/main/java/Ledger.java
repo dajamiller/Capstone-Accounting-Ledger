@@ -3,7 +3,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.io.BufferedReader;
-//import java.util.Collections;
+import java.util.Collections;
 
 public class Ledger {
 
@@ -28,6 +28,7 @@ public class Ledger {
     }
 
     public void loadFromCsv() {
+        list.clear();
         try {
             BufferedReader reader = new BufferedReader(new FileReader("transactions.csv"));
             String line;
@@ -44,7 +45,7 @@ public class Ledger {
             }
             reader.close();
 
-            //Collections.reverse(list); // reversed list to show newest first
+            Collections.reverse(list); // reversed list to show newest first
             System.out.println("Transaction loaded successfully!");
         } catch (Exception e) {
             System.out.println("Error reading transactions.csv, try again...");
@@ -59,7 +60,6 @@ public class Ledger {
 }
 
     public void showDeposits() {
-        loadFromCsv();
         System.out.println("\n~~~~ Showing All Deposits ~~~~");
         for (Transaction t : list) {
             if (t.getAmount() > 0) {
@@ -70,6 +70,7 @@ public class Ledger {
 
     public void showPayments() {
         loadFromCsv();
+
         System.out.println("\n~~~~ Showing All Payments ~~~~");
         for (Transaction t : list) {
             if (t.getAmount() < 0) {
@@ -78,8 +79,12 @@ public class Ledger {
         }
     }
 
-    public void addTransaction(Transaction transaction) {
-        list.add(transaction);
+    public void addTransaction() {
+        if (list.add(new Transaction())){
+            System.out.println("Transaction Added!");
+        } else {
+            System.out.println("Oops, try again...");
+        }
     }
 }
 

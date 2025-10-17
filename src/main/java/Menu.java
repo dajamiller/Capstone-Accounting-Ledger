@@ -72,13 +72,15 @@ public class Menu {
         // file reader/writer
 
         try {
+
             FileWriter myWriter = new FileWriter("transactions.csv", true);
             LocalDateTime today = LocalDateTime.now();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd|HH:mm:ss");;
             String Entry = ("\n" + today.format(formatter) + "|" + vendor + "|" + description + "|" + (amount *= -1));
             myWriter.write(Entry);
+            ledger.addTransaction();
             myWriter.close();  // must close manually
-            //ledger.addTransaction();
+
             System.out.println("Payment successful");
         } catch (IOException e) {
             System.out.println("An error occurred, please try again");
@@ -121,7 +123,7 @@ public class Menu {
                 description,
                 vendor,
                 amount);
-            //ledger.addTransaction();
+            ledger.addTransaction();
     }
 
     private static void showLedger (Ledger ledger, Transaction list, Scanner scanner) {
@@ -141,14 +143,17 @@ public class Menu {
             String choice = scanner.nextLine().trim().toUpperCase();
             switch (choice) {
                 case "A" -> {
-                   ledger.showAllTransactions();
+                    ledger.loadFromCsv();
+                    ledger.showAllTransactions();
                     break;
                 }
                 case "D" -> {
+                    ledger.loadFromCsv();
                     ledger.showDeposits();
                     break;
                 }
                 case "P" -> {
+                    ledger.loadFromCsv();
                     ledger.showPayments();
                     break;
                 }
