@@ -10,9 +10,11 @@ public class Menu {
     LocalDateTime today = LocalDateTime.now();
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd|HH:mm:ss");
 
+
     public static void ShowHome() {
         Transaction list = new Transaction();
         Transaction t = new Transaction();
+        Ledger ledger = new Ledger();
 
         boolean running = true;
 
@@ -36,7 +38,9 @@ public class Menu {
                     break;
                 }
                 case "P" -> {
-                    makePayment(ledger, list, scanner);
+                    makePayment(ledger,
+                            list,
+                            scanner);
                     break;
                 }
                 case "L" -> {
@@ -74,7 +78,7 @@ public class Menu {
             String Entry = ("\n" + today.format(formatter) + "|" + vendor + "|" + description + "|" + (amount *= -1));
             myWriter.write(Entry);
             myWriter.close();  // must close manually
-            ledger.addTransaction();
+            //ledger.addTransaction();
             System.out.println("Payment successful");
         } catch (IOException e) {
             System.out.println("An error occurred, please try again");
@@ -117,6 +121,7 @@ public class Menu {
                 description,
                 vendor,
                 amount);
+            //ledger.addTransaction();
     }
 
     private static void showLedger (Ledger ledger, Transaction list, Scanner scanner) {
