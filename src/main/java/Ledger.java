@@ -4,6 +4,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.io.BufferedReader;
 import java.util.Collections;
+import java.io.FileOutputStream;
 
 public class Ledger {
 
@@ -84,6 +85,12 @@ public class Ledger {
     }
     public void monthToDate() {
         LocalDate today = LocalDate.now();
+
+        boolean found = false;
+        for (Transaction t : list) {
+
+            System.out.println(t);
+        }
 
 
     }
