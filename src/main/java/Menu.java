@@ -43,22 +43,22 @@ public class Menu {
             switch (choice) {
                 case "D" -> {
                     addDeposit(ledger, list, scanner);
-                    break;
+                    //break;
                 }
                 case "P" -> {
                     makePayment(ledger,
                             list,
                             scanner);
-                    break;
+                    //break;
                 }
                 case "L" -> {
                     showLedger(ledger, list, scanner);
-                    break;
+                    //break;
                 }
                 case "X" -> {
                     System.out.println("Thank you for using Quantify, goodbye!");
                     running = false;
-                    break;
+                    // break;
                 }
 
                 default -> System.out.println("Invalid choice, please try again");
@@ -98,8 +98,8 @@ public class Menu {
         Transaction t = new Transaction(
                 LocalDate.now(),
                 LocalTime.now(),
-                description,
                 vendor,
+                description,
                 amount);
         ledger.addTransaction(t);
     }
@@ -215,7 +215,7 @@ public class Menu {
                 case 0 -> {
                     runningReportScreen = false;
                 }
-                default -> System.out.println("Invalid choice, please try again");
+                //default -> System.out.println("Invalid choice, please try again");
             }
         }
 

@@ -14,16 +14,6 @@ public class Ledger {
     public Ledger() {
     }
 
-    //public void showDeposits() {}
-    //public void showPayments() {}
-//    public void addTransaction(Transaction transaction) {
-//        if (list.add(transaction))
-//            System.out.println("Transaction Added!");// optional description add - " + transaction.getDescription() + "$" + transaction.getAmount());
-//        else {
-//            System.out.println("Oops, try again...");
-//        }
-//    }
-
     public void saveToCsv() {
 
     }
@@ -49,7 +39,7 @@ public class Ledger {
             Collections.reverse(list); // reversed list to show newest first
             System.out.println("Transaction loaded successfully!");
         } catch (Exception e) {
-            System.out.println("Error reading transactions.csv, try again...");
+            //System.out.println("Error reading transactions.csv, try again...");
         }
     }
 
@@ -131,7 +121,7 @@ public class Ledger {
         boolean vendorFound = false;
 
         for (Transaction t : list) {
-            if (t.getVendor().equalsIgnoreCase(vendor)) {
+            if (t.getVendor().contains(vendor)) {
                 System.out.println(t);
                 vendorFound = true;
             }
