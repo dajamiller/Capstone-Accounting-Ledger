@@ -14,9 +14,6 @@ public class Ledger {
     public Ledger() {
     }
 
-    public void saveToCsv() {
-
-    }
 
     public void loadFromCsv() {
         list.clear();
@@ -37,9 +34,9 @@ public class Ledger {
             reader.close();
 
             Collections.reverse(list); // reversed list to show newest first
-            System.out.println("Transaction loaded successfully!");
+            System.out.println("Transaction loaded successfully! line 37");
         } catch (Exception e) {
-            //System.out.println("Error reading transactions.csv, try again...");
+            System.out.println("Error reading transactions.csv, try again...(line 39)");
         }
     }
 

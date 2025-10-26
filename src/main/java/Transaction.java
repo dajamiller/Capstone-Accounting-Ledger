@@ -37,8 +37,6 @@ public class Transaction {
 
     @Override
     public String toString() {
-        //String transactionType = "Deposit";
-//
             return this.date + "|" + this.time + "|" + this.vendor + "|" + this.description + "|" + this.amount;
         }
     }

@@ -151,17 +151,14 @@ public class Menu {
             String choice = scanner.nextLine().trim().toUpperCase();
             switch (choice) {
                 case "A" -> {
-                    //ledger.loadFromCsv();
                     ledger.showAllTransactions();
                     break;
                 }
                 case "D" -> {
-                    //ledger.loadFromCsv();
                     ledger.showDeposits();
                     break;
                 }
                 case "P" -> {
-                    //ledger.loadFromCsv();
                     ledger.showPayments();
                     break;
                 }
@@ -172,7 +169,7 @@ public class Menu {
                     runningLedger = false;
                     break;
                 }
-                default -> System.out.println("Invalid choice, please try again");
+                default -> System.out.println("Invalid choice, please try again line 172");
             }
         }
     }
@@ -215,7 +212,7 @@ public class Menu {
                 case 0 -> {
                     runningReportScreen = false;
                 }
-                //default -> System.out.println("Invalid choice, please try again");
+                default -> System.out.println("Invalid choice, please try again line 218");
             }
         }
 
