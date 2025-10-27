@@ -16,10 +16,11 @@ public class Menu {
         Transaction t = new Transaction();
         Ledger ledger = new Ledger();
 
-        ledger.loadFromCsv(); // only loaded once for all options
+        Scanner scanner = new Scanner(System.in);
 
         boolean running = true;
         while (running) {
+            ledger.loadFromCsv(); // only loaded once for all options
             // create home menu options
             System.out.println("   ____                    __  _ ____     \n" +
                     "  / __ \\__  ______ _____  / /_(_) __/_  __\n" +
@@ -37,31 +38,35 @@ public class Menu {
 
 
             System.out.println("Enter your choice: ");
-            Scanner scanner = new Scanner(System.in);
+
             String choice = scanner.nextLine().trim().toUpperCase(); // prompt user input make it uppercase and trim spaces
 
-            switch (choice) {
-                case "D" -> {
-                    addDeposit(ledger, list, scanner);
-                    //break;
-                }
-                case "P" -> {
-                    makePayment(ledger,
-                            list,
-                            scanner);
-                    //break;
-                }
-                case "L" -> {
-                    showLedger(ledger, list, scanner);
-                    //break;
-                }
-                case "X" -> {
-                    System.out.println("Thank you for using Quantify, goodbye!");
-                    running = false;
-                    // break;
-                }
+            try {
+                switch (choice) {
+                    case "D" -> {
+                        addDeposit(ledger, list, scanner);
+                        //break;
+                    }
+                    case "P" -> {
+                        makePayment(ledger,
+                                list,
+                                scanner);
+                        //break;
+                    }
+                    case "L" -> {
+                        showLedger(ledger, list, scanner);
+                        //break;
+                    }
+                    case "X" -> {
+                        System.out.println("Thank you for using Quantify, goodbye!");
+                        running = false;
+                        // break;
+                    }
 
-                default -> System.out.println("Invalid choice, please try again");
+                    default -> System.out.println("Invalid choice, please try again");
+                }
+            } catch (Exception e) {
+                throw new RuntimeException(e);
             }
         }
 
@@ -84,7 +89,7 @@ public class Menu {
             FileWriter myWriter = new FileWriter("transactions.csv", true);
             LocalDateTime today = LocalDateTime.now();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd|HH:mm:ss");;
-            String Entry = ("\n" + today.format(formatter) + "|" + vendor + "|" + description + "|" + (amount *= -1));
+            String Entry = ("\n" + today.format(formatter) + "|" + vendor + "|" + description + "|-");
             myWriter.write(Entry);
 
             myWriter.close();  // must close manually
@@ -211,6 +216,7 @@ public class Menu {
                 }
                 case 0 -> {
                     runningReportScreen = false;
+                    break;
                 }
                 default -> System.out.println("Invalid choice, please try again line 218");
             }
