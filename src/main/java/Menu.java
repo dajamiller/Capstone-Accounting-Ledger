@@ -37,6 +37,7 @@ public class Menu {
             System.out.println("(X) Exit");
 
 
+
             System.out.println("Enter your choice: ");
 
             String choice = scanner.nextLine().trim().toUpperCase(); // prompt user input make it uppercase and trim spaces

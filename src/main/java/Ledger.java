@@ -15,6 +15,7 @@ public class Ledger {
     }
 
 
+
     public void loadFromCsv() {
         list.clear();
         try {
